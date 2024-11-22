@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { todoReducer } from './state/todos/todo.reducer';
 import { TodoComponentModule } from './todo/todo.module';
+import { TodoEffects } from './state/todos/todo.effects';
 
 
 
@@ -25,4 +26,8 @@ import { TodoComponentModule } from './todo/todo.module';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    console.log('AppModule loaded');
+  }
+ }

@@ -3,6 +3,8 @@ import {
   addTodo,
   removeTodo,
   loadTodos,
+  loadTodosSuccess,
+  loadTodosFailure,
 } from './todo.action';
 import { Todo } from '../../todo/todo.model';
 
@@ -32,4 +34,18 @@ export const todoReducer = createReducer(
     todos: state.todos.filter((todo) => todo.id !== id),
   })),
   // Trigger loading the todos
+  on(loadTodos, (state) => ({...state, status: 'loading' as 'loading'})),
+
+  on(loadTodosSuccess, (state, {todos}) => ({
+      ...state,
+      todos: todos,
+      error:'',
+      status:'success' as 'success'
+  })),
+
+  on (loadTodosFailure, (state, { error }) => ({
+    ...state,
+    error:error,
+    status:'error' as 'error'
+  }))
 );

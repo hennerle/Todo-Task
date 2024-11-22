@@ -9,6 +9,7 @@ import { AppState } from '../state/app.state';
 
 @Component({
   selector: 'app-todo',
+  standalone:false,
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css'
 })

@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Let's get things done!</h2>
+    <h2>To-dos</h2>
     <input [(ngModel)]="todo" placeholder="Enter a task" />
     <button (click)="addTodo()">Add Todo</button>
   
@@ -9,5 +9,13 @@
         <button class="remove-btn">Remove</button>
       </li>
     </ul>
-  </div>
+</div>
+<div class="container2">
+  <h2>Dogs</h2>
+  <ul>
+    <li *ngFor="let dog of allDogs$ | async" class="dog-item">
+      <span>{{ dog.attributes.description }}</span>
+    </li>
+  </ul>
+</div>
   

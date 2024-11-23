@@ -7,7 +7,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { todoReducer } from './state/todos/todo.reducer';
 import { TodoComponentModule } from './todo/todo.module';
-import { TodoEffects } from './state/todos/todo.effects';
+import { DogEffects } from './state/dogs/dog.effects';
+import { dogReducer } from './state/dogs/dog.reducer';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -18,10 +20,13 @@ import { TodoEffects } from './state/todos/todo.effects';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ todos: todoReducer }),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({
+      todos: todoReducer, 
+      dogs: dogReducer  }),
+    EffectsModule.forRoot([DogEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     TodoComponentModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

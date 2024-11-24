@@ -16,4 +16,9 @@ export const editTodo= createAction(
     props<{ id: string, content: string } >()
 );
 
+export const removeManyTodos = createAction(
+    '[Todo List] Remove Many Todos',
+    props<{ ids: string[] }>()
+  );
+
 

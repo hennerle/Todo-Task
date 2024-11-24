@@ -2,6 +2,7 @@
     <h2>To-dos</h2>
     <input [(ngModel)]="todo" placeholder="Enter a task" />
     <button (click)="addTodo()">Add Todo</button>
+    <button (click)="removeAllTodos()">Remove All</button>
   
     <ul>
       <li *ngFor="let todo of allTodos$ | async"  class="todo-item">

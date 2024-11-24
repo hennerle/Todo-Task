@@ -2,40 +2,49 @@ import { createReducer, on } from '@ngrx/store';
 import {
   addTodo,
   removeTodo,
-  editTodo
+  editTodo,
+  removeManyTodos
 } from './todo.action';
 import { Todo } from '../../todo/todo.model';
-import { Dog } from '../../todo/dog.model';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-export interface TodoState {
-  todos: Todo[];
+export const todoAdapter: EntityAdapter<Todo> = createEntityAdapter<Todo>();
+
+
+export interface TodoState extends EntityState<Todo>{
   error: string;
   status: 'pending' | 'loading' | 'error' | 'success';
 }
 
-export const initialState: TodoState = {
-  todos: [],
+export const initialState: TodoState = todoAdapter.getInitialState({
   error: '',
   status: 'pending',
-};
+});
 
 
 
 export const todoReducer = createReducer(
   initialState,
-  on(addTodo, (state, { content }) => ({
-    ...state,
-    todos: [...state.todos, { id: Date.now().toString(), content: content }],
-  })),
+  on(addTodo, (state, { content }) => 
+    todoAdapter.addOne(
+      { id: Date.now().toString(), content },
+      state
+    )
+  ),
 
-  on(removeTodo, (state, { id }) => ({
-    ...state,
-    todos: state.todos.filter((todo) => todo.id !== id),
-  })),
-  on(editTodo, (state, { id, content }) => ({
-    ...state,
-    todos: state.todos.map((todo)=>
-    todo.id === id ? { ...todo, content} : todo
-    ),
-  })),
+  on(removeTodo, (state, { id }) => 
+    todoAdapter.removeOne(id, state)
+  ),
+
+  on(editTodo, (state, { id, content }) => 
+    todoAdapter.updateOne(
+      { id, changes: { content } },
+      state
+    )
+  ),
+
+  on(removeManyTodos, (state, { ids }) => 
+    todoAdapter.removeMany(ids, state)
+  )
 );
+    

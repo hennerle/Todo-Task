@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { addTodo, editTodo, removeTodo } from '../state/todos/todo.action';
+import { addTodo, editTodo, removeManyTodos, removeTodo } from '../state/todos/todo.action';
 import { Todo } from './todo.model';
 import { selectAllDogs } from '../state/dogs/dog.selectors'
-import { selectAllTodos } from '../state/todos/todo.selectors'
+import { selectAllTodos, selectTodoIds } from '../state/todos/todo.selectors'
 import { AppState } from '../state/app.state';
 import { loadDogs } from '../state/dogs/dog.action';
 import { Dog } from './dog.model';
 import { DogService } from './dog.service';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -34,6 +35,9 @@ export class TodoComponent implements OnInit {
 
   addTodo() {
     this.store.dispatch(addTodo({ content: this.todo}));
+    console.log('ASFAF')
+
+    console.log(this.store.select(selectAllTodos))
     this.todo = '';
   }
 
@@ -43,5 +47,15 @@ export class TodoComponent implements OnInit {
 
   editTodo(todo: Todo){
     this.store.dispatch(editTodo({ id: todo.id, content: this.todo}));
+  }
+
+  removeAllTodos(){
+    this.store.select(selectTodoIds).pipe(
+      take(1)
+    ).subscribe(ids =>
+      {
+        this.store.dispatch(removeManyTodos({ ids }));
+      });
+      console.log('1111')
   }
 }

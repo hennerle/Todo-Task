@@ -11,4 +11,9 @@ export const removeTodo= createAction(
     props<{ id: string } >()
 );
 
+export const editTodo= createAction(
+    '[Todo Page] Edit Todo',
+    props<{ id: string, content: string } >()
+);
+
 

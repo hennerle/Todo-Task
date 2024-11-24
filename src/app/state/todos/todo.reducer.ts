@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   addTodo,
   removeTodo,
+  editTodo
 } from './todo.action';
 import { Todo } from '../../todo/todo.model';
 import { Dog } from '../../todo/dog.model';
@@ -21,16 +22,20 @@ export const initialState: TodoState = {
 
 
 export const todoReducer = createReducer(
-  // Supply the initial state
   initialState,
-  // Add the new todo to the todos array
   on(addTodo, (state, { content }) => ({
     ...state,
     todos: [...state.todos, { id: Date.now().toString(), content: content }],
   })),
-  // Remove the todo from the todos array
+
   on(removeTodo, (state, { id }) => ({
     ...state,
     todos: state.todos.filter((todo) => todo.id !== id),
+  })),
+  on(editTodo, (state, { id, content }) => ({
+    ...state,
+    todos: state.todos.map((todo)=>
+    todo.id === id ? { ...todo, content} : todo
+    ),
   })),
 );

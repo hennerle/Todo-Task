@@ -1,0 +1,49 @@
+.container ul {
+    list-style-type: disc;  
+    padding-left: 20px;      
+    display: block;
+  }
+  
+  .container li {
+    margin-bottom: 10px;  
+    display: flex;
+ 
+  }
+ 
+ 
+ .remove-btn, .edit-btn {
+    padding: 5px 10px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  .remove-btn:hover, .edit-btn:hover {
+    background-color: #ddd;
+  }
+
+
+.todo-item {
+    display: block;                  
+    align-items: center;            
+    margin-bottom: 10px;            
+  }
+  
+
+  .todo-content {
+    flex-grow: 1;                   
+    text-align: left;               
+  }
+  
+
+  .todo-buttons {
+    display: flex;                  
+    gap: 10px;                      
+  }
+
+  .container {
+    max-width: 600px;    
+    margin-left: 0;       
+  }
+
+ 

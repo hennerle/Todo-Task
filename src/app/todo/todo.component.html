@@ -6,9 +6,13 @@
   
     <ul>
       <li *ngFor="let todo of allTodos$ | async"  class="todo-item">
-        <span>{{ todo.content }}</span>
-        <button class="remove-btn" (click)="removeTodo(todo)">Remove</button>
-        <button class="edit-btn"(click)="editTodo(todo)">Edit</button>
+        <div class="todo-content">
+          <span>{{ todo.content }}</span>
+        </div>
+        <div class="todo-buttons">
+          <button class="remove-btn" (click)="removeTodo(todo)">Remove</button>
+          <button class="edit-btn" (click)="editTodo(todo)">Edit</button>
+        </div>
       </li>
     </ul>
 </div>

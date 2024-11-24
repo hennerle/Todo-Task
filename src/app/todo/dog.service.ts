@@ -13,10 +13,4 @@ export class DogService {
     return this.http.get<Dog[]>(`${this.apiUrl}`);
   }
 
-  logDogs(): void {
-    this.getDogs().subscribe((response) => {
-      console.log('API Response:', response);  // Logge die vollständige Antwort
-      //console.log('Dogs Data:', response.data);  // Logge nur die 'data' (die Hunde-Daten)
-    });
-  }
 }

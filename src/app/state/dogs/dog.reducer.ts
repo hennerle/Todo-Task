@@ -4,7 +4,6 @@ import {
   loadDogsSuccess,
   loadDogsFailure
 } from './dog.action';
-import { Todo } from '../../todo/todo.model';
 import { Dog } from '../../todo/dog.model';
 
 export interface DogState {

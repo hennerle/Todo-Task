@@ -5,10 +5,8 @@ import { addTodo, editTodo, removeManyTodos, removeTodo } from '../state/todos/t
 import { Todo } from './todo.model';
 import { selectAllDogs } from '../state/dogs/dog.selectors'
 import { selectAllTodos, selectTodoIds } from '../state/todos/todo.selectors'
-import { AppState } from '../state/app.state';
 import { loadDogs } from '../state/dogs/dog.action';
 import { Dog } from './dog.model';
-import { DogService } from './dog.service';
 import { take } from 'rxjs/operators';
 
 
@@ -35,9 +33,6 @@ export class TodoComponent implements OnInit {
 
   addTodo() {
     this.store.dispatch(addTodo({ content: this.todo}));
-    console.log('ASFAF')
-
-    console.log(this.store.select(selectAllTodos))
     this.todo = '';
   }
 
@@ -56,6 +51,5 @@ export class TodoComponent implements OnInit {
       {
         this.store.dispatch(removeManyTodos({ ids }));
       });
-      console.log('1111')
   }
 }

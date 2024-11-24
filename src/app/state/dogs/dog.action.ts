@@ -1,5 +1,4 @@
 import { createAction, props } from "@ngrx/store";
-import { Dog } from "../../todo/dog.model";
 
 export const loadDogs = createAction('[Dog] Load Dogs');
 
